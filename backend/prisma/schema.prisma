@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model User {
+  id        Int     @id @default(autoincrement())
+  name      String
+  email     String  @unique
+  password  String
+  role      Role    @default(EMPLOYEE)
+  tasks     Task[]  @relation("UserTasks")
+  createdAt DateTime @default(now())
+}
+
+model Task {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String
+  status      TaskStatus @default(PENDING)
+  dueDate     DateTime
+  assignedTo  Int
+  user        User      @relation("UserTasks", fields: [assignedTo], references: [id])
+  createdAt   DateTime  @default(now())
+}
+
+enum Role {
+  ADMIN
+  EMPLOYEE
+}
+
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+}
