@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import userRoutes from "./modules/users/user.routes.js";
+import taskRoutes from "./modules/tasks/task.routes.js";
 
 const app = express();
 
@@ -9,5 +11,7 @@ app.use(express.json());
 app.get("/health", (req, res) => {
   res.json({ status: "Backend is running 🚀" });
 });
+app.use("/users", userRoutes);
+app.use("/tasks", taskRoutes);
 
 export default app;
