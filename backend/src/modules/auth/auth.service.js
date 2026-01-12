@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { generateToken } from "../../utils/jwt.js";
-import prisma from "../../config/prisma.config.js";
+import prisma from "../../config/prisma.js";
 
 export const registerUser = async ({ name, email, password, role }) => {
     const existingUser = await prisma.user.findUnique({

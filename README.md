@@ -161,7 +161,7 @@ exit
 
 Open browser:
 ```url
-http://localhost:5000/health
+http://localhost:5001/health
 ```
 Expected response:
 ```json
@@ -192,7 +192,7 @@ npm run build
 npm run preview
 ```
 
-The frontend expects the API to be available at `VITE_API_URL` (see `frontend/.env` example above). If not set, it falls back to `http://localhost:5000`.
+The frontend expects the API to be available at `VITE_API_URL` (see `frontend/.env` example above). If not set, it falls back to `http://localhost:5001`.
 
 ## 🧪 Useful Commands
 ```
