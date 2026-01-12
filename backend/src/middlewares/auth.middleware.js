@@ -1,9 +1,24 @@
 import jwt from "jsonwebtoken";
-import {validationError} from "../utils/responseHandler"
-export const authMiddleware = (req, res, next) = > {
-    try {
-        
-    } catch (error) {
-        return validationError(res, 401, "Invalid or Expire Token", error)
+import { errorResponse } from "../utils/responseHandler.js";
+
+export const authMiddleware = (req, res, next) => {
+  try {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return errorResponse(res, "Authorization token missing", 401);
     }
-}
+
+    const token = authHeader.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    req.user = {
+      id: decoded.id,
+      role: decoded.role,
+    };
+
+    next();
+  } catch (error) {
+    return errorResponse(res, "Invalid or expired token", 401);
+  }
+};

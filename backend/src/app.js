@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/health", (req, res) => {
+app.get("/health", (_, res) => {
   res.json({ status: "Backend is running 🚀" });
 });
 app.use("/users", userRoutes);

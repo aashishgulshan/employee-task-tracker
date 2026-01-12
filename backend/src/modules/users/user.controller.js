@@ -1,5 +1,6 @@
 import { getAllEmployees, getUserTasks } from "./user.service.js";
-import { successResponse, errorResponse } from "../../utils/response.js";
+import { successResponse, errorResponse } from "../../utils/responseHandler.js";
+
 
 export const listEmployees = async (req, res) => {
   try {

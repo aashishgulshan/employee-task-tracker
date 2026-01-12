@@ -16,10 +16,14 @@ Admins can assign tasks to employees, and employees can update their task status
 - bcrypt
 - Docker & Docker Compose
 
-### Frontend (upcoming)
+### Frontend
 - React
+- Vite
+- Tailwind CSS
 - Axios
 - React Router
+
+See `frontend/README.md` for frontend-specific setup and development instructions.
 
 ---
 
@@ -60,20 +64,25 @@ employee-task-tracker/
 │  
 ├── frontend/
 │   ├── src/
-│   ├── api/
-│   	└── axios.js
-├── auth/  
-│   └── auth.js
-├── pages/
-│   ├── Login.jsx
-│   ├── AdminDashboard.jsx
-│   └── EmployeeDashboard.jsx
-├── routes/
-│   └── ProtectedRoute.jsx
-├── App.jsx
-└── main.jsx
+│   │	├── api/
+│  	│	│   └── axios.js
+│   │	├── assets/  
+│   │	├── auth/  
+│   │	│	└── auth.js
+│   │	├── components/  
+│   │	├── components/  
+│	│	├── pages/
+│	│	│   ├── Login.jsx
+│	│	│   ├── AdminDashboard.jsx
+│	│	│   └── EmployeeDashboard.jsx
+│	│	├── routes/
+│	│	│   └── ProtectedRoute.jsx
+│	│	├── App.jsx
+│	│	└── main.jsx
+│   └── .env
 ├── docker-compose.yml
 └── README.md
+
 ```
 
 ## ⚙️ Prerequisites
@@ -86,13 +95,21 @@ employee-task-tracker/
 
 ## 🔐 Environment Variables
 
-Create a file at `backend/.env`:
+Backend example — Create `backend/.env`:
 
 ```env
 PORT=5000
 DATABASE_URL="mysql://root:root@db:3306/task_tracker"
 JWT_SECRET=supersecretkey
 ```
+
+Frontend example — Create `frontend/.env` (optional):
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+> Tip: `VITE_API_URL` can be changed to point to a deployed API; the frontend reads this env value (or falls back to `http://localhost:5000`).
 
 
 
@@ -153,6 +170,29 @@ Expected response:
 }
 
 ```
+
+---
+
+5️⃣ Start frontend (development)
+
+From the project root:
+
+```bash
+cd frontend
+npm install
+npm run dev
+# opens at http://localhost:5173
+```
+
+Or build and preview the production bundle:
+
+```bash
+cd frontend
+npm run build
+npm run preview
+```
+
+The frontend expects the API to be available at `VITE_API_URL` (see `frontend/.env` example above). If not set, it falls back to `http://localhost:5000`.
 
 ## 🧪 Useful Commands
 ```

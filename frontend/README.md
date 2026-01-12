@@ -1,16 +1,91 @@
-# React + Vite
+# Employee Task Tracker — Frontend 🔧
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the React + Vite frontend for the Employee Task Tracker application.
 
-Currently, two official plugins are available:
+It provides a small, focused UI for:
+- Admin dashboard (manage users & tasks)
+- Employee dashboard (view and update assigned tasks)
+- Authentication (login)
+- Task creation and listing components
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Quickstart ✅
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Install dependencies:
 
-## Expanding the ESLint configuration
+```bash
+cd frontend
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. Start the development server:
+
+```bash
+npm run dev
+# opens at http://localhost:5173 by default
+```
+
+3. Build for production:
+
+```bash
+npm run build
+```
+
+4. Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+---
+
+## Backend dependency ⚠️
+
+The frontend communicates with the backend API at `http://localhost:5000` by default (see `src/api/axios.js`). Make sure the backend + database are running before using the app.
+
+Options to run the backend:
+- Locally: open `./backend`, run `npm install` and `npm run dev`
+- With Docker Compose (root of repo):
+
+```bash
+docker compose up --build
+```
+
+---
+
+## Scripts & Useful Commands 🔍
+
+- `npm run dev` — start dev server (Vite)
+- `npm run build` — produce a production build
+- `npm run preview` — locally preview the production build
+- `npm run lint` — run ESLint checks
+
+---
+
+## Notes & Conventions 💡
+
+- API base URL is controlled in `src/api/axios.js` (defaults to `http://localhost:5000`). You can change it to `import.meta.env.VITE_API_URL` if you prefer environment-driven configuration.
+- Auth token is stored in `localStorage` under the key `token` and is automatically attached to requests by an Axios interceptor.
+- The main pages live under `src/pages` and reusable UI is in `src/components`.
+
+---
+
+## Contributing ✨
+
+- Create feature branches from `main`
+- Follow the existing code style and run `npm run lint` before opening a PR
+
+---
+
+## License
+
+This project is provided under the project license in the repository root.
+
+---
+
+If you want, I can also:
+- Add a section about environment variables and an example `.env` (with Vite examples)
+- Update `src/api/axios.js` to use `VITE_API_URL` for configuration
+
+Feel free to tell me which improvements you want next.
