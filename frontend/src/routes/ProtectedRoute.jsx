@@ -3,13 +3,13 @@ import { getUser, isAuthenticated } from "../auth/auth";
 
 const ProtectedRoute = ({ children, role }) => {
   if (!isAuthenticated()) {
-    return <Navigate to="/" />;
+    return <Navigate to="/" replace />;
   }
 
   const user = getUser();
 
   if (role && user?.role !== role) {
-    return <Navigate to="/" />;
+    return <Navigate to="/" replace />;
   }
 
   return children;

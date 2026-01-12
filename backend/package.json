@@ -17,6 +17,7 @@
   "license": "ISC",
   "description": "Backend for the project",
   "dependencies": {
+    "@prisma/adapter-mariadb": "^7.2.0",
     "@prisma/client": "^7.2.0",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
