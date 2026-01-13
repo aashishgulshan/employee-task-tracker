@@ -1,12 +1,7 @@
-import { defineConfig, env } from "prisma/config";
-import "dotenv/config";
+import pkg from "@prisma/client";
 
-export default defineConfig({
-  schema: "prisma/schema.prisma",
-  migrations: {
-    path: "prisma/migrations",
-  },
-  datasource: {
-    url: env("DATABASE_URL"),
-  },
-});
+const { PrismaClient } = pkg;
+
+const prisma = new PrismaClient();
+
+export default prisma;

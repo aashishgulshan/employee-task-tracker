@@ -3,7 +3,6 @@ import {
   successResponse,
   errorResponse,
   validationError,
-  notFoundResponse,
 } from "../../utils/responseHandler.js";
 export const register = async (req, res) => {
   try {
@@ -12,10 +11,10 @@ export const register = async (req, res) => {
       validationError(res, "Name, email and password are required", 400);
       return;
     }
-    const user = await registerUser({ name, email, password, role });
-    successResponse(res, "User registered successfully", 201, user);
+    const data = await registerUser({ name, email, password, role });
+    successResponse(res, "User registered successfully", 201, data);
   } catch (error) {
-    errorResponse(res, error.message, 500);
+    next(error);
   }
 };
 

@@ -1,4 +1,4 @@
-import prisma from "../../config/prisma.js";
+import  prisma  from "../../config/prisma.js";
 
 export const createTask = async (data) => {
   return prisma.task.create({
